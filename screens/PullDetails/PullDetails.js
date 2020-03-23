@@ -8,7 +8,9 @@ export default function App() {
   const [dataArr, setDataArr] = useState(PullData);
 
   const handleToggleItem = itemId => {
-    console.log('event handled', itemId);
+    const newArr = dataArr.map(el =>
+      (el.id === itemId ? Object.assign({}, el, { 'checked': true }) : el))
+    setDataArr(newArr)
   }
 
   return (
