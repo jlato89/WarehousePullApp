@@ -38,7 +38,7 @@ const PullData = [
     boxType: 'Wall Cabinet',
     location: '8J4',
     qty: 2
-  },
+  }
 ]
 
 export default PullData
