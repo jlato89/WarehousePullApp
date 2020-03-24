@@ -5,7 +5,8 @@ const PullData = [
     boxSku: 'DB27BC',
     boxType: 'Full Cabinet In Box',
     location: '10M2',
-    qty: 1
+    qty: 1,
+    picked: false
   },
   {
     id: 2,
@@ -13,7 +14,8 @@ const PullData = [
     boxSku: 'SB27BC',
     boxType: 'Full Cabinet In Box',
     location: '10K1',
-    qty: 1
+    qty: 1,
+    picked: false
   },
   {
     id: 3,
@@ -21,7 +23,8 @@ const PullData = [
     boxSku: 'LS33BCF',
     boxType: 'Base Cabinet',
     location: 'FLOOR',
-    qty: 1
+    qty: 1,
+    picked: false
   },
   {
     id: 4,
@@ -29,7 +32,8 @@ const PullData = [
     boxSku: 'RW3612BC',
     boxType: '',
     location: '10H3',
-    qty: 1
+    qty: 1,
+    picked: false
   },
   {
     id: 5,
@@ -37,7 +41,8 @@ const PullData = [
     boxSku: 'W2136DB',
     boxType: 'Wall Cabinet',
     location: '8J4',
-    qty: 2
+    qty: 2,
+    picked: false
   }
 ]
 
