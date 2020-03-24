@@ -3,9 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ListViewItem = ({ data, toggleItem }) => {
-  console.log('Sorted Data', data);
   return (
-    <View style={styles.item}>
+    <View style={[styles.item, data.picked && styles.selectedItem]} >
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
       <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
       <Text style={[styles.itemText, styles.boxSku]}>{data.boxSku}</Text>
@@ -31,6 +30,9 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     marginHorizontal: 16,
   },
+  selectedItem: {
+    backgroundColor: '#a4a4a4'
+  },
   itemText: {
     fontSize: 18
   },
@@ -49,9 +51,7 @@ const styles = StyleSheet.create({
   },
   location: {
     flex: 2,
-    // fontSize: 20,
-    textAlign: 'right',
-    // fontWeight: 'bold'
+    textAlign: 'right'
   },
   checkMark: {
     flex: 2,
