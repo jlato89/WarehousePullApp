@@ -1,22 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ListViewItem = ({ data, toggleItem }) => {
+  console.log('Sorted Data', data);
   return (
     <View style={styles.item}>
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
       <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
       <Text style={[styles.itemText, styles.boxSku]}>{data.boxSku}</Text>
       <Text style={[styles.itemText, styles.location]}>{data.location}</Text>
-      <Button
-        title='done'
-        disabled={data.checked}
-        // style={styles.checkMark}
-        // name="check-square"
-        // color="white"
+      <Icon
+        name={data.picked ? 'check-box' : 'check-box-outline-blank'}
+        type='MaterialIcon'
         onPress={() => toggleItem(data.id)}
+        // disabled={data.picked}
+        style={styles.checkMark}
       />
     </View>
   )
