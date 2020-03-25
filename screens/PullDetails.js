@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Button, FlatList, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-import ListViewItem from '../../components/ListViewItem/ListViewItem';
-import PullData from '../../TestData/PullDetails.example';
+import ListViewItem from '../components/ListViewItem/ListViewItem';
+import PullData from '../TestData/PullDetails.example';
 
-export default function App() {
+const PullDetails = () => {
   const [dataArr, setDataArr] = useState(PullData);
 
   const isFinished = dataArr.every((item => item.picked !== false));
@@ -35,9 +34,10 @@ export default function App() {
   );
 }
 
+export default PullDetails
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
+    flex: 1
   },
 });
