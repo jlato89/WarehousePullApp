@@ -11,10 +11,10 @@ const ListViewItem = ({ data, toggleItem }) => {
       <Text style={[styles.itemText, styles.location]}>{data.location}</Text>
       <Icon
         name={data.picked ? 'check-box' : 'check-box-outline-blank'}
+        style={styles.checkMark}
         type='MaterialIcon'
         onPress={() => toggleItem(data.id)}
-        // disabled={data.picked}
-        style={styles.checkMark}
+      // disabled={data.picked}
       />
     </View>
   )
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 4,
-    marginHorizontal: 16,
+    marginHorizontal: 8
   },
   selectedItem: {
     backgroundColor: '#a4a4a4'
