@@ -1,22 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MenuBtn from '../components/MenuBtn/MenuBtn';
+import testImg from '../assets/note-128x128.png';
 
 const MenuBtns = [
   {
     name: 'Pull List',
     route: 'PullList',
-    imgUrl: 'http://simpleicon.com/wp-content/uploads/note-128x128.png'
+    imgUrl: testImg
   },
   {
     name: 'Scheduler',
     route: 'PullList',
-    imgUrl: 'http://simpleicon.com/wp-content/uploads/note-128x128.png'
+    imgUrl: testImg
   },
   {
     name: 'PullDetails Test',
     route: 'PullDetails',
-    imgUrl: 'http://simpleicon.com/wp-content/uploads/note-128x128.png'
+    imgUrl: testImg
   },
 ]
 

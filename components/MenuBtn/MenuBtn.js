@@ -5,7 +5,7 @@ const MenuBtn = ({ navigation, name, route, imgUrl }) => {
   return (
     <TouchableOpacity style={styles.btnContainer} onPress={() => navigation.navigate(route)}>
       <View>
-        <Image style={styles.btnImg} source={{ uri: imgUrl }} />
+        <Image style={styles.btnImg} source={imgUrl} />
         <Text style={styles.btnText}>{name}</Text>
       </View>
     </TouchableOpacity>
