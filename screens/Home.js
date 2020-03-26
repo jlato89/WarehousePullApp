@@ -14,8 +14,8 @@ const MenuBtns = [
     imgUrl: 'http://simpleicon.com/wp-content/uploads/note-128x128.png'
   },
   {
-    name: 'Other Option',
-    route: 'PullList',
+    name: 'PullDetails Test',
+    route: 'PullDetails',
     imgUrl: 'http://simpleicon.com/wp-content/uploads/note-128x128.png'
   },
 ]

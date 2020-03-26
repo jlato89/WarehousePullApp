@@ -14,7 +14,7 @@ const App = () => {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{ title: 'NobleCraft\'s Warehouse App' }} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="PullList" component={PullList} />
         <Stack.Screen name="PullDetails" component={PullDetails} />
