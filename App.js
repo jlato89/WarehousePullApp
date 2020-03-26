@@ -20,9 +20,6 @@ const App = () => {
         <Stack.Screen name="PullDetails" component={PullDetails} />
       </Stack.Navigator>
     </NavigationContainer>
-    // <View style={styles.container}>
-    //   <PullDetails />
-    // </View>
   );
 }
 
