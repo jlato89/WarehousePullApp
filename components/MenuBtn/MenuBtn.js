@@ -1,25 +1,33 @@
-import React from 'react'
-import { StyleSheet, TouchableHighlight, Image } from 'react-native'
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View, Text, Image } from 'react-native';
 
-const MenuBtn = ({ navigation }) => {
+const MenuBtn = ({ navigation, name, route, imgUrl }) => {
   return (
-    <TouchableHighlight style={styles.container} onPress={() => navigation.navigate('PullList')}>
-      <Image
-        style={styles.container}
-        source={{
-          uri: 'https://cdn0.iconfinder.com/data/icons/vector-huge-black-icons/16/order_form-512.png',
-        }}
-      />
-    </TouchableHighlight>
+    <TouchableOpacity style={styles.btnContainer} onPress={() => navigation.navigate(route)}>
+      <View>
+        <Image style={styles.btnImg} source={{ uri: imgUrl }} />
+        <Text style={styles.btnText}>{name}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 
 export default MenuBtn
 
 const styles = StyleSheet.create({
-  container: {
-    height: 150,
-    width: 150,
-    marginVertical: 10
+  btnContainer: {
+    flexBasis: '40%',
+    margin: 15,
+    // borderWidth: 2 //! Used for testing
   },
+  btnImg: {
+    alignSelf: 'center',
+    height: 100,
+    width: 128,
+  },
+  btnText: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
 })
