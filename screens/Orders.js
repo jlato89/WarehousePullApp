@@ -1,37 +1,40 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity } from 'react-native';
-import PullListData from '../TestData/PullListData.example';
+import CurrentOrders from '../TestData/CurrentOrders.example';
 
-function PullListItem({ listItem }) {
+function ListItem({ navigation, item }) {
   return (
-    <TouchableOpacity style={styles.listContainer} onPress={() => alert('pressed')}>
+    <TouchableOpacity
+      style={styles.listContainer}
+      onPress={() => navigation.navigate('PullDetails', { pullList: item.pullList })
+      }>
       <View style={styles.listHeader}>
-        <Text style={styles.listText}>{listItem.orderNum}</Text>
-        <Text style={styles.listText}>{listItem.placedOn}</Text>
+        <Text style={styles.listText}>{item.orderNum}</Text>
+        <Text style={styles.listText}>{item.placedOn}</Text>
       </View>
       <View style={styles.listContent}>
-        <Text style={styles.listText}>{listItem.jobName}</Text>
-        <Text style={styles.listText}>{listItem.status}</Text>
+        <Text style={styles.listText}>{item.jobName}</Text>
+        <Text style={styles.listText}>{item.status}</Text>
       </View>
     </TouchableOpacity>
   )
 }
 
-const PullList = () => {
-  const [pullArr, setPullArr] = useState(PullListData);
+const Orders = ({ navigation }) => {
+  const [pullArr, setPullArr] = useState(CurrentOrders);
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         // data={dataArr.sort((a, b) => a.picked - b.picked)}
         data={pullArr}
-        renderItem={({ item }) => <PullListItem listItem={item} />}
+        renderItem={({ item }) => <ListItem item={item} navigation={navigation} />}
         keyExtractor={item => item.id.toString()}
       />
     </SafeAreaView>)
 }
 
-export default PullList
+export default Orders
 
 const styles = StyleSheet.create({
   container: {

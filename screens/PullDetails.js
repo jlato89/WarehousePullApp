@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Button, FlatList, StyleSheet } from 'react-native';
 import ListViewItem from '../components/ListViewItem/ListViewItem';
-import PullData from '../TestData/PullDetails.example';
 
-const PullDetails = () => {
-  const [dataArr, setDataArr] = useState(PullData);
+const PullDetails = ({ navigation, route }) => {
+  const { pullList } = route.params;
+  const [dataArr, setDataArr] = useState(pullList);
 
   const isFinished = dataArr.every((item => item.picked !== false));
 

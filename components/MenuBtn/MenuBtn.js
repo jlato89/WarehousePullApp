@@ -2,8 +2,13 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image } from 'react-native';
 
 const MenuBtn = ({ navigation, name, route, imgUrl }) => {
+  console.log(navigation);
+  console.log(route);
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={() => navigation.navigate(route)}>
+    <TouchableOpacity
+      style={styles.btnContainer}
+      onPress={() => navigation.navigate(route)
+      }>
       <View>
         <Image style={styles.btnImg} source={imgUrl} />
         <Text style={styles.btnText}>{name}</Text>
