@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image } from 'react-native';
 import { UserManagement } from '../screens/Index';
 import { createStackNavigator } from '@react-navigation/stack';
+import HeaderHomeIcon from '../components/HeaderHomeIcon';
 
 const Stack = createStackNavigator();
 const UserStack = () =>
@@ -12,12 +12,7 @@ const UserStack = () =>
       headerTintColor: '#fff',
       headerTitleStyle: { fontWeight: 'bold' },
       headerRightContainerStyle: { paddingHorizontal: 10 },
-      headerRight: () => (
-        <Image
-          style={{ width: 36, height: 36, tintColor: '#fff' }}
-          source={require('../assets/outline_home_black_36dp.png')}
-        />
-      )
+      headerRight: () => <HeaderHomeIcon />
     }}
   >
     <Stack.Screen
