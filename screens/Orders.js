@@ -6,7 +6,7 @@ function ListItem({ navigation, item }) {
   return (
     <TouchableOpacity
       style={styles.listContainer}
-      onPress={() => navigation.navigate('PullDetails', { pullList: item.pullList })
+      onPress={() => navigation.navigate('PullDetails', { order: item })
       }>
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{item.orderNum}</Text>
