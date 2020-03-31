@@ -2,7 +2,7 @@ const CurrentOrders = [
   {
     id: 1,
     orderNum: 135890,
-    jobName: '3103doakave1',
+    custName: 'Michelle And Chad Settle',
     placedOn: '2020-01-07 09:00',
     status: 'pending',
     pullList: [
@@ -56,7 +56,7 @@ const CurrentOrders = [
   {
     id: 2,
     orderNum: 135891,
-    jobName: '2104kidroad',
+    custName: 'Billy Atchison',
     placedOn: '2020-01-07 10:00',
     status: 'pending',
     pullList: [
@@ -101,7 +101,7 @@ const CurrentOrders = [
   {
     id: 3,
     orderNum: 135892,
-    jobName: '3268nolenlane',
+    custName: 'Derek Dobbs LLC',
     placedOn: '2020-01-07 11:00',
     status: 'pending',
     pullList: [
@@ -137,7 +137,7 @@ const CurrentOrders = [
   {
     id: 4,
     orderNum: 135893,
-    jobName: '7015wikle',
+    custName: 'Brad Taylor',
     placedOn: '2020-01-07 12:00',
     status: 'pending',
     pullList: [
@@ -191,7 +191,7 @@ const CurrentOrders = [
   {
     id: 5,
     orderNum: 135894,
-    jobName: 'saundersville',
+    custName: 'Mr. D\'s Construction And Remodeli',
     placedOn: '2020-01-07 13:00',
     status: 'pending',
     pullList: [
