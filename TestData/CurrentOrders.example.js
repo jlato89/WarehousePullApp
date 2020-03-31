@@ -5,6 +5,7 @@ const CurrentOrders = [
     custName: 'Michelle And Chad Settle',
     placedOn: '2020-01-07 09:00',
     status: 'pending',
+    notes: '',
     pullList: [
       {
         id: 1,
@@ -45,6 +46,60 @@ const CurrentOrders = [
       {
         id: 5,
         style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 6,
+        style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 7,
+        style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 8,
+        style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 9,
+        style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 10,
+        style: 'BC',
+        boxSku: 'RW3612BC',
+        boxType: '',
+        location: '10H3',
+        qty: 1,
+        picked: false
+      },
+      {
+        id: 11,
+        style: 'BC',
         boxSku: 'W2136DB',
         boxType: 'Wall Cabinet',
         location: '8J4',
@@ -59,6 +114,7 @@ const CurrentOrders = [
     custName: 'Billy Atchison',
     placedOn: '2020-01-07 10:00',
     status: 'pending',
+    notes: 'this is a test note',
     pullList: [
       {
         id: 1,
@@ -104,6 +160,7 @@ const CurrentOrders = [
     custName: 'Derek Dobbs LLC',
     placedOn: '2020-01-07 11:00',
     status: 'pending',
+    notes: 'this is a test note',
     pullList: [
       {
         id: 1,
@@ -140,6 +197,7 @@ const CurrentOrders = [
     custName: 'Brad Taylor',
     placedOn: '2020-01-07 12:00',
     status: 'pending',
+    notes: 'this is a test note',
     pullList: [
       {
         id: 1,
@@ -194,6 +252,7 @@ const CurrentOrders = [
     custName: 'Mr. D\'s Construction And Remodeli',
     placedOn: '2020-01-07 13:00',
     status: 'pending',
+    notes: 'this is a test note',
     pullList: [
       {
         id: 1,
