@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, StyleSheet, Text, Alert } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 const ListViewItem = ({ data, toggleItem }) => {
   return (
@@ -9,13 +9,20 @@ const ListViewItem = ({ data, toggleItem }) => {
       <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
       <Text style={[styles.itemText, styles.boxSku]}>{data.boxSku}</Text>
       <Text style={[styles.itemText, styles.location]}>{data.location}</Text>
-      <Icon
-        name={data.picked ? 'check-box' : 'check-box-outline-blank'}
-        style={styles.checkMark}
-        type='MaterialIcon'
-        onPress={() => toggleItem(data.id)}
-      // disabled={data.picked}
-      />
+      <View style={styles.checkMark}>
+        <Icon
+          name={data.picked ? 'check-square-o' : 'square-o'}
+          type='font-awesome'
+          onPress={() => !data.picked ? toggleItem(data.id) : Alert.alert(
+            `Mark ${data.boxSku} as un-pulled`,
+            'are you sure?',
+            [
+              { text: 'YES', onPress: () => toggleItem(data.id) },
+              { text: 'NO', style: 'cancel' }
+            ])
+          }
+        />
+      </View>
     </View>
   )
 }
@@ -25,20 +32,20 @@ export default ListViewItem
 const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 4,
-    marginHorizontal: 8
+    padding: 10,
+    marginVertical: 3,
+    // marginHorizontal: 8
   },
   selectedItem: {
     backgroundColor: '#a4a4a4'
   },
   itemText: {
-    fontSize: 18
+    fontSize: 20
   },
   qty: {
     flex: 1,
-    // fontSize: 20,
     fontWeight: 'bold'
   },
   style: {
@@ -54,9 +61,8 @@ const styles = StyleSheet.create({
     textAlign: 'right'
   },
   checkMark: {
-    flex: 2,
+    flex: 1,
     fontSize: 30,
-    alignSelf: 'center',
-    textAlign: 'right'
+    alignItems: 'flex-end'
   }
 });
