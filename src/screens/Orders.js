@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity } from 'react-native';
-import CurrentOrders from '../TestData/CurrentOrders.example';
+import CurrentOrders from '../../TestData/CurrentOrders.example';
 
 function ListItem({ navigation, item }) {
   return (
