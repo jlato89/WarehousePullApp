@@ -13,7 +13,7 @@ function ListItem({ navigation, item }) {
         <Text style={styles.listText}>{item.placedOn}</Text>
       </View>
       <View style={styles.listContent}>
-        <Text style={styles.listText}>{item.jobName}</Text>
+        <Text style={styles.listText} numberOfLines={1}>{item.custName}</Text>
         <Text style={styles.listText}>{item.status}</Text>
       </View>
     </TouchableOpacity>
@@ -51,10 +51,13 @@ const styles = StyleSheet.create({
   },
   listContent: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    paddingHorizontal: 20
+
   },
   listText: {
     marginHorizontal: 5,
-    fontSize: 18
+    fontSize: 18,
+    maxWidth: '60%'
   }
 });
