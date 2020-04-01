@@ -25,20 +25,20 @@ const options = [
 
 const Home = ({ navigation }) => {
   const privLv = 1;    //* (1)ADMIN, (2)SUPERVISOR, (3)EMPLOYEE, ect
-  const menuBtns = options.filter(btn => btn.privLv >= privLv);
 
   return (
     <SafeAreaView style={styles.container}>
-      {menuBtns.map((btn, i) => (
-        <TouchableOpacity
-          key={i}
-          style={styles.menuBtnWrapper}
-          onPress={() => navigation.navigate(btn.route, btn)}
-        >
-          <Icon style={styles.menuBtnImg} name={btn.iconName} type='material' size={80} />
-          <Text style={styles.menuBtnText}>{btn.name}</Text>
-        </TouchableOpacity>
-      ))}
+      {options.filter(btn => btn.privLv >= privLv)
+        .map((btn, i) => (
+          <TouchableOpacity
+            key={i}
+            style={styles.menuBtnWrapper}
+            onPress={() => navigation.navigate(btn.route, btn)}
+          >
+            <Icon style={styles.menuBtnImg} name={btn.iconName} type='material' size={80} />
+            <Text style={styles.menuBtnText}>{btn.name}</Text>
+          </TouchableOpacity>
+        ))}
     </SafeAreaView>
   )
 }
