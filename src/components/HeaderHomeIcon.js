@@ -8,7 +8,7 @@ const HeaderHomeIcon = () => {
     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
       <Image
         style={{ width: 36, height: 36, tintColor: '#fff' }}
-        source={require('../assets/outline_home_black_36dp.png')}
+        source={require('../assets/home-icon.png')}
       />
     </TouchableOpacity>
   )

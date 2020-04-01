@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, } from 'react-native';
-import ListViewItem from '../components/ListViewItem/ListViewItem';
+import ListViewItem from '../components/ListViewItem';
 
 const PullDetails = ({ navigation, route }) => {
   const { orderNum, custName, notes, pullList } = route.params.order;
