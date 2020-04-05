@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import MainStack from './src/Stacks/MainStack'
+import MainStack from './app/Stacks/MainStack'
 
 
 const App = () => {
