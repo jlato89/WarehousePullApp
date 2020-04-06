@@ -7,13 +7,18 @@ const { Op } = require('sequelize');
 router.get('/api/fetchOrders', function (req, res) {
   models.orders
     .findAll({
-      attributes: ['quote', 'date', 'friendly_name', 'user'],
+      attributes: ['quote', 'date', 'data'],
       where: {
         pulled: 'no',
         date: {
           [Op.gte]: moment().subtract(30, 'days').toDate()
         }
-      }
+      },
+      include: [{
+        model: models.users,
+        as: 'customer',
+        attributes: ['first_name', 'last_name']
+      }]
     })
     .then(orders => {
       res.json(orders)
