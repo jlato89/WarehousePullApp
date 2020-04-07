@@ -5,11 +5,18 @@ import CurrentOrders from '../../TestData/CurrentOrders.example';
 function ListItem({ navigation, item }) {
   const { quote, date, data, customerInfo } = item;
   const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
-  console.log(data);
+  let dataArr = []
+  data.split('@').forEach(el => dataArr.push(el.split(',')));
+
+  console.log(dataArr);
   return (
     <TouchableOpacity
       style={styles.listContainer}
-    // onPress={() => navigation.navigate('PullDetails', { order: data })}
+      onPress={() => navigation.navigate('PullDetails', {
+        quoteId: quote,
+        customer: customer,
+        dataArr: dataArr
+      })}
     >
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{quote}</Text>
@@ -26,7 +33,6 @@ function ListItem({ navigation, item }) {
 const Orders = ({ navigation }) => {
   const [pullArr, setPullArr] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  console.log('Current Pull Array', pullArr);
 
   useEffect(() => {
     if (isLoading) {

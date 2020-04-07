@@ -3,26 +3,26 @@ import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, } from 'react-n
 import ListViewItem from '../components/ListViewItem';
 
 const PullDetails = ({ navigation, route }) => {
-  const { orderNum, custName, notes, pullList } = route.params.order;
-  const [dataArr, setDataArr] = useState(pullList);
+  const { quoteId, customer, dataArr } = route.params;
+  const [listArr, setlistArr] = useState(dataArr);
 
-  const isFinished = dataArr.every((item => item.picked !== false));
+  const isFinished = listArr.every((item => item.picked !== false));
 
   const handleToggleItem = itemId => {
-    const newArr = dataArr.map(el =>
+    const newArr = listArr.map(el =>
       (el.id === itemId ? Object.assign({}, el, { 'picked': !el.picked }) : el))
-    setDataArr(newArr)
+    setlistArr(newArr)
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{orderNum}</Text>
-        <Text style={styles.headerText}>{custName}</Text>
+        <Text style={styles.headerText}>{quoteId}</Text>
+        <Text style={styles.headerText}>{customer}</Text>
       </View>
       <View style={styles.listItems}>
         <FlatList
-          data={dataArr.sort((a, b) => a.picked - b.picked)}
+          data={listArr.sort((a, b) => a.picked - b.picked)}
           renderItem={({ item }) =>
             <ListViewItem
               data={item}
@@ -31,9 +31,9 @@ const PullDetails = ({ navigation, route }) => {
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
-      <View style={styles.comments}>
+      {/* <View style={styles.comments}>
         <Text style={styles.commentsText}>{notes ? notes : 'There are currently no Notes'}</Text>
-      </View>
+      </View> */}
       <Button
         style={styles.submitBtn}
         title='Submit'
