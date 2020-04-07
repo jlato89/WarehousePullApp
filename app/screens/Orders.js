@@ -3,19 +3,21 @@ import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, Activ
 import CurrentOrders from '../../TestData/CurrentOrders.example';
 
 function ListItem({ navigation, item }) {
-  const description = item.user + ' : ' + item.friendly_name;
+  const { quote, date, data, customer };
+  const customer = customer.first_name + ' ' + customer.last_name;
+  console.log(data);
   return (
     <TouchableOpacity
       style={styles.listContainer}
-    // onPress={() => navigation.navigate('PullDetails', { order: item })}
+    // onPress={() => navigation.navigate('PullDetails', { order: data })}
     >
       <View style={styles.listHeader}>
-        <Text style={styles.listText}>{item.orderNum || item.quote}</Text>
-        <Text style={styles.listText}>{item.placedOn || item.date}</Text>
+        <Text style={styles.listText}>{quote}</Text>
+        <Text style={styles.listText}>{date}</Text>
       </View>
       <View style={styles.listContent}>
-        <Text style={styles.listText} numberOfLines={1}>{item.custName || description}</Text>
-        <Text style={styles.listText}>{item.status || '[STATUS]'}</Text>
+        <Text style={styles.listText} numberOfLines={1}>{customer}</Text>
+        <Text style={styles.listText}>[STATUS]</Text>
       </View>
     </TouchableOpacity>
   )
