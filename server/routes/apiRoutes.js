@@ -16,7 +16,7 @@ router.get('/api/fetchOrders', function (req, res) {
       },
       include: [{
         model: models.users,
-        as: 'customer',
+        as: 'customerInfo',
         attributes: ['first_name', 'last_name']
       }]
     })

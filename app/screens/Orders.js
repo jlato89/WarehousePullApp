@@ -3,8 +3,8 @@ import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, Activ
 import CurrentOrders from '../../TestData/CurrentOrders.example';
 
 function ListItem({ navigation, item }) {
-  const { quote, date, data, customer };
-  const customer = customer.first_name + ' ' + customer.last_name;
+  const { quote, date, data, customerInfo } = item;
+  const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
   console.log(data);
   return (
     <TouchableOpacity
