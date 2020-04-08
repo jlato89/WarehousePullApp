@@ -40,9 +40,8 @@ const dataParse = (data) => {
       let obj = {
         style: dataArr[i + 0],
         sku: dataArr[i + 1],
-        cost: dataArr[i + 2],
         qty: dataArr[i + 3],
-        desc: dataArr[i + 4]
+        picked: false
       }
       newArr.push(obj);
     }
