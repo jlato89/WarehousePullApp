@@ -38,7 +38,7 @@ const dataParse = (data) => {
     let newArr = [];
     for (let i = 0; i < dataArr.length; i += 5) {
       let obj = {
-        type: dataArr[i + 0],
+        style: dataArr[i + 0],
         sku: dataArr[i + 1],
         cost: dataArr[i + 2],
         qty: dataArr[i + 3],

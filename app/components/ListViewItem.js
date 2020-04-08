@@ -7,7 +7,7 @@ const ListViewItem = ({ data, toggleItem }) => {
     <View style={[styles.item, data.picked && styles.selectedItem]} >
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
       <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
-      <Text style={[styles.itemText, styles.boxSku]}>{data.boxSku}</Text>
+      <Text style={[styles.itemText, styles.boxSku]}>{data.sku}</Text>
       <Text style={[styles.itemText, styles.location]}>{data.location}</Text>
       <View style={styles.checkMark}>
         <Icon

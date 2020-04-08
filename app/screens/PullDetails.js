@@ -3,8 +3,8 @@ import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, } from 'react-n
 import ListViewItem from '../components/ListViewItem';
 
 const PullDetails = ({ navigation, route }) => {
-  const { quoteId, customer, dataArr } = route.params;
-  const [listArr, setlistArr] = useState(dataArr);
+  const { quote, customer, data } = route.params;
+  const [listArr, setlistArr] = useState(data);
 
   const isFinished = listArr.every((item => item.picked !== false));
 
@@ -17,7 +17,7 @@ const PullDetails = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{quoteId}</Text>
+        <Text style={styles.headerText}>{quote}</Text>
         <Text style={styles.headerText}>{customer}</Text>
       </View>
       <View style={styles.listItems}>

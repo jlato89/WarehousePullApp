@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
-import CurrentOrders from '../../TestData/CurrentOrders.example';
+// import CurrentOrders from '../../TestData/CurrentOrders.example';
 
 function ListItem({ navigation, item }) {
   const { quote, date, data, customerInfo } = item;
   const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
-  let dataArr = []
-  data.split('@').forEach(el => dataArr.push(el.split(',')));
 
-  console.log(dataArr);
   return (
     <TouchableOpacity
       style={styles.listContainer}
-      onPress={() => navigation.navigate('PullDetails', {
-        quoteId: quote,
-        customer: customer,
-        dataArr: dataArr
-      })}
+      onPress={() => navigation.navigate('PullDetails', { quote, customer, data })}
     >
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{quote}</Text>
