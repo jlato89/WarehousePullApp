@@ -1,0 +1,68 @@
+[
+  {
+    "quote": 136624,
+    "date": "2020-04-02 14:13",
+    "data": [
+      {"style": "cab", "sku": "SSW-SB36", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-BLB42", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-B30", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-DB24", "qty": "3", "picked": false},
+      {"style": "cab", "sku": "SSW-W1842", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W2442", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-W3042", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W3624", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-AW42", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-VSB36", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-SM8", "qty": "4", "picked": false},
+      {"style": "cab", "sku": "SSW-TK96", "qty": "4", "picked": false},
+      {"style": "cab", "sku": "SSW-WDC2442", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-DWR", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-VSB30", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-VDB12", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-MS3018", "qty": "1", "picked": false}
+    ],
+    "customerInfo": {"first_name": "Dudley", "last_name": "Burwell"}
+  },
+  {
+    "quote": 136637,
+    "date": "2020-04-03 08:56",
+    "data": [
+      {"style": "cab", "sku": "SSW-VDB18", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-VSB30", "qty": "3", "picked": false},
+      {"style": "cab", "sku": "SSW-SB36", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W2442", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W3342", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W3624", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-WDC2442", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W1842", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-TK96", "qty": "3", "picked": false},
+      {"style": "cab", "sku": "SSW-DWR", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-B18", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-LS36", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-DB24", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-WF642", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "SSW-W1242", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "SSW-SM8", "qty": "3", "picked": false}
+    ],
+    "customerInfo": {"first_name": "Dudley", "last_name": "Burwell"}
+  },
+  {
+    "quote": 136675,
+    "date": "2020-04-03 09:39",
+    "data": [
+      {"style": "cab", "sku": "DSE-V3021DR", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "DSE-VDB18", "qty": "1", "picked": true}
+    ],
+    "customerInfo": {"first_name": "Byron", "last_name": "Hebert"}
+  },
+  {
+    "quote": 136628,
+    "date": "2020-04-03 12:46",
+    "data": [
+      {"style": "cab", "sku": "DSW-B12", "qty": "1", "picked": false},
+      {"style": "cab", "sku": "DSW-BEP3", "qty": "2", "picked": false},
+      {"style": "cab", "sku": "DSW-B27", "qty": "3", "picked": false}
+    ],
+    "customerInfo": {"first_name": "Jake", "last_name": "Scott"}
+  }
+]
