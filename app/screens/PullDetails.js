@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, } from 'react-native';
-import ListViewItem from '../components/ListViewItem';
+import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, Alert } from 'react-native';
+import { Icon } from 'react-native-elements';
+// import ListViewItem from '../components/ListViewItem';
 
 const PullDetails = ({ navigation, route }) => {
   const { quote, customer, data } = route.params;
@@ -8,9 +9,9 @@ const PullDetails = ({ navigation, route }) => {
 
   const isFinished = listArr.every((item => item.picked !== false));
 
-  const handleToggleItem = itemId => {
+  const handleToggleItem = itemSku => {
     const newArr = listArr.map(el =>
-      (el.id === itemId ? Object.assign({}, el, { 'picked': !el.picked }) : el))
+      (el.sku === itemSku ? Object.assign({}, el, { 'picked': !el.picked }) : el))
     setlistArr(newArr)
   }
 
@@ -44,6 +45,32 @@ const PullDetails = ({ navigation, route }) => {
   );
 }
 
+function ListViewItem({ data, toggleItem }) {
+  return (
+    <View style={[styles.item, data.picked && styles.selectedItem]} >
+      <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
+      <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
+      <Text style={[styles.itemText, styles.sku]}>{data.sku}</Text>
+      <Text style={[styles.itemText, styles.location]}>{data.location}</Text>
+      <View style={styles.checkMark}>
+        <Icon
+          name={data.picked ? 'check-square-o' : 'square-o'}
+          type='font-awesome'
+          onPress={() => !data.picked ? toggleItem(data.sku) : Alert.alert(
+            `Mark ${data.sku} as un-pulled`,
+            'are you sure?',
+            [
+              { text: 'YES', onPress: () => toggleItem(data.sku) },
+              { text: 'NO', style: 'cancel' }
+            ])
+          }
+        />
+      </View>
+    </View>
+  )
+}
+
+
 export default PullDetails
 
 const styles = StyleSheet.create({
@@ -62,6 +89,41 @@ const styles = StyleSheet.create({
   },
   listItems: {
     flex: 15,
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f9c2ff',
+    padding: 10,
+    marginVertical: 3,
+    // marginHorizontal: 8
+  },
+  selectedItem: {
+    backgroundColor: '#a4a4a4'
+  },
+  itemText: {
+    fontSize: 20
+  },
+  qty: {
+    flex: 1,
+    fontWeight: 'bold'
+  },
+  style: {
+    flex: 1,
+    textAlign: 'right'
+  },
+  sku: {
+    flex: 3,
+    textAlign: 'right'
+  },
+  location: {
+    flex: 2,
+    textAlign: 'right'
+  },
+  checkMark: {
+    flex: 1,
+    fontSize: 30,
+    alignItems: 'flex-end'
   },
   comments: {
     flex: 1,
