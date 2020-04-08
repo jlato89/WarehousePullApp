@@ -1,6 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
-// import CurrentOrders from '../../TestData/CurrentOrders.example';
+import TESTDATA from '../../TestData/testData.json';
+
+const Orders = ({ navigation }) => {
+  const [orderList, setOrderList] = useState(TESTDATA);
+  const [isLoading, setIsLoading] = useState(false); //! TESTING, Change to true on prod
+
+  // useEffect(() => {
+  //   if (!orderList) {
+  //     console.log('IF useEffect Triggered');
+  //     fetch('http://192.168.1.136:8080/api/fetchOrders')
+  //       .then(response => response.json())
+  //       .then(latestOrders => setOrderList(latestOrders))
+  //       .catch(err => console.log(err))
+  //       .finally(() => setIsLoading(false))
+  //   }
+  //   console.log('ELSE useEffect Triggered');
+  // });
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {isLoading ?
+        <ActivityIndicator size='large' />
+        :
+        <FlatList
+          data={orderList}
+          renderItem={({ item }) => <ListItem item={item} navigation={navigation} />}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      }
+    </SafeAreaView>)
+}
 
 function ListItem({ navigation, item }) {
   const { quote, date, data, customerInfo } = item;
@@ -17,41 +47,16 @@ function ListItem({ navigation, item }) {
       </View>
       <View style={styles.listContent}>
         <Text style={styles.listText} numberOfLines={1}>{customer}</Text>
-        <Text style={styles.listText}>[STATUS]</Text>
+        <Text style={styles.listText}>{PullStatus(data) ? 'Not Started' : 'Started'}</Text>
       </View>
     </TouchableOpacity>
   )
 }
 
-const Orders = ({ navigation }) => {
-  const [pullArr, setPullArr] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (isLoading) {
-      console.log('IF useEffect Triggered');
-      fetch('http://192.168.1.136:8080/api/fetchOrders')
-        .then(response => response.json())
-        .then(latestOrders => setPullArr(latestOrders))
-        .catch(err => console.log(err))
-        .finally(() => setIsLoading(false))
-    }
-    console.log('ELSE useEffect Triggered');
-  });
-
-  return (
-    <SafeAreaView style={styles.container}>
-      {isLoading ?
-        <ActivityIndicator size='large' />
-        :
-        <FlatList
-          // data={dataArr.sort((a, b) => a.picked - b.picked)}
-          data={pullArr}
-          renderItem={({ item }) => <ListItem item={item} navigation={navigation} />}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      }
-    </SafeAreaView>)
+function PullStatus(items) {
+  let status = items.every(el => el.picked !== true)
+  return status
 }
 
 export default Orders
