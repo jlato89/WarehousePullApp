@@ -6,6 +6,19 @@ const Orders = ({ navigation }) => {
   const [orderList, setOrderList] = useState(TESTDATA);
   const [isLoading, setIsLoading] = useState(false); //! TESTING, Change to true on prod
 
+  const handleToggleItem = (quoteId, sku) => {
+    // let newArr = JSON.parse(JSON.stringify(orderList));
+    let newArr = [...orderList]; //! Not working correctly, mutates state
+    newArr.forEach(el =>
+      el.quote === quoteId
+        ?
+        el.data.forEach(data =>
+          data.sku === sku ? data.picked = !data.picked : data)
+        : el
+    )
+    setOrderList(newArr);
+    // console.log(orderList);
+  }
   // useEffect(() => {
   //   if (!orderList) {
   //     console.log('IF useEffect Triggered');
@@ -25,21 +38,21 @@ const Orders = ({ navigation }) => {
         :
         <FlatList
           data={orderList}
-          renderItem={({ item }) => <ListItem item={item} navigation={navigation} />}
+          renderItem={({ item }) => <ListItem item={item} navigation={navigation} handleToggle={handleToggleItem} />}
           keyExtractor={(item, index) => index.toString()}
         />
       }
     </SafeAreaView>)
 }
 
-function ListItem({ navigation, item }) {
+function ListItem({ navigation, item, handleToggle }) {
   const { quote, date, data, customerInfo } = item;
   const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
 
   return (
     <TouchableOpacity
       style={styles.listContainer}
-      onPress={() => navigation.navigate('PullDetails', { quote, customer, data })}
+      onPress={() => navigation.navigate('PullDetails', { quote, customer, data, handleToggle })}
     >
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{quote}</Text>
