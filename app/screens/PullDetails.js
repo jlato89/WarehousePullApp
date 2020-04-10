@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
-// import ListViewItem from '../components/ListViewItem';
 
 const PullDetails = ({ navigation, route }) => {
-  const { quote, customer, data } = route.params;
-  const [listArr, setlistArr] = useState(data);
+  const { quote, customer, notes, data, handleToggle } = route.params;
+  const isFinished = data.every((item => item.picked !== false));
 
-  const isFinished = listArr.every((item => item.picked !== false));
 
-  const handleToggleItem = itemSku => {
-    const newArr = listArr.map(el =>
-      (el.sku === itemSku ? Object.assign({}, el, { 'picked': !el.picked }) : el))
-    setlistArr(newArr)
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,18 +16,22 @@ const PullDetails = ({ navigation, route }) => {
       </View>
       <View style={styles.listItems}>
         <FlatList
-          data={listArr.sort((a, b) => a.picked - b.picked)}
+          data={data.sort((a, b) => a.picked - b.picked)}
           renderItem={({ item }) =>
             <ListViewItem
+              quote={quote}
               data={item}
-              toggleItem={handleToggleItem}
+              toggleItem={handleToggle}
             />}
           keyExtractor={(item, index) => index.toString()}
+          extraData={data.picked}
         />
       </View>
-      {/* <View style={styles.comments}>
-        <Text style={styles.commentsText}>{notes ? notes : 'There are currently no Notes'}</Text>
-      </View> */}
+      <View style={styles.comments}>
+        <Text style={styles.commentsText}>
+          {notes ? notes : 'There are currently no Notes'}
+        </Text>
+      </View>
       <Button
         style={styles.submitBtn}
         title='Submit'
@@ -45,7 +42,7 @@ const PullDetails = ({ navigation, route }) => {
   );
 }
 
-function ListViewItem({ data, toggleItem }) {
+function ListViewItem({ quote, data, toggleItem }) {
   return (
     <View style={[styles.item, data.picked && styles.selectedItem]} >
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
@@ -56,11 +53,11 @@ function ListViewItem({ data, toggleItem }) {
         <Icon
           name={data.picked ? 'check-square-o' : 'square-o'}
           type='font-awesome'
-          onPress={() => !data.picked ? toggleItem(data.sku) : Alert.alert(
+          onPress={() => !data.picked ? toggleItem(quote, data.sku) : Alert.alert(
             `Mark ${data.sku} as un-pulled`,
             'are you sure?',
             [
-              { text: 'YES', onPress: () => toggleItem(data.sku) },
+              { text: 'YES', onPress: () => toggleItem(quote, data.sku) },
               { text: 'NO', style: 'cancel' }
             ])
           }
