@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "quote": 136624,
     "date": "2020-04-02 14:13",
     "data": [
@@ -24,6 +25,7 @@
     "customerInfo": {"first_name": "Dudley", "last_name": "Burwell"}
   },
   {
+    "id": 2,
     "quote": 136637,
     "date": "2020-04-03 08:56",
     "data": [
@@ -47,6 +49,7 @@
     "customerInfo": {"first_name": "Dudley", "last_name": "Burwell"}
   },
   {
+    "id": 3,
     "quote": 136675,
     "date": "2020-04-03 09:39",
     "data": [
@@ -56,6 +59,7 @@
     "customerInfo": {"first_name": "Byron", "last_name": "Hebert"}
   },
   {
+    "id": 4,
     "quote": 136628,
     "date": "2020-04-03 12:46",
     "data": [
