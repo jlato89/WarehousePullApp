@@ -17,6 +17,7 @@ const Orders = ({ navigation }) => {
   //   }
   //   console.log('ELSE useEffect Triggered');
   // });
+  console.log(orderList);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,20 +31,21 @@ const Orders = ({ navigation }) => {
               item={item}
               navigation={navigation}
             />}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={item => item.id.toString()}
+          extraData={orderList}
         />
       }
     </SafeAreaView>)
 }
 
 function ListItem({ navigation, item }) {
-  const { quote, date, data, customerInfo } = item;
+  const { id, quote, date, data, customerInfo } = item;
   const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
 
   return (
     <TouchableOpacity
       style={styles.listContainer}
-      onPress={() => navigation.navigate('PullDetails', { quote, customer, data })}
+      onPress={() => navigation.navigate('PullDetails', { id, quote, customer, data })}
     >
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{quote}</Text>
