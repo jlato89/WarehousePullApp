@@ -1,68 +1,64 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, View, Text, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
-
-const options = [
-  {
-    name: 'Current Orders',
-    iconName: 'assignment',
-    route: 'OrderStack',
-    privLv: 2
-  },
-  {
-    name: 'Scheduler',
-    iconName: 'date-range',
-    route: 'SchedulerStack',
-    privLv: 2
-  },
-  {
-    name: 'User Management',
-    iconName: 'supervisor-account',
-    route: 'UserStack',
-    privLv: 1
-  },
-]
+import menuItems from '../config/menuItems';
+import GridFormat from '../components/gridFormat';
 
 const Home = ({ navigation }) => {
-  const privLv = 1;    //* (1)ADMIN, (2)SUPERVISOR, (3)EMPLOYEE, ect
-
   return (
-    <SafeAreaView style={styles.container}>
-      {options.filter(btn => btn.privLv >= privLv)
-        .map((btn, i) => (
-          <TouchableOpacity
-            key={i}
-            style={styles.menuBtnWrapper}
-            onPress={() => navigation.navigate(btn.route, btn)}
-          >
-            <Icon style={styles.menuBtnImg} name={btn.iconName} type='material' size={80} />
-            <Text style={styles.menuBtnText}>{btn.name}</Text>
-          </TouchableOpacity>
-        ))}
-    </SafeAreaView>
+    <View style={styles.container}>
+      <FlatList
+        numColumns={numColumns}
+        data={GridFormat(menuItems, numColumns)}
+        renderItem={({ item }) =>
+          <RenderItem
+            item={item}
+            navigation={navigation}
+          />}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   )
 }
 
 export default Home
 
+//* Rendered Item
+function RenderItem({ item, navigation }) {
+  let { itemStyle, itemText, itemInvisible } = styles;
+  if (item.empty) {
+    return <View style={[itemStyle, itemInvisible]} />
+  }
+  return (
+    <TouchableOpacity
+      style={itemStyle}
+      onPress={() => navigation.navigate(item.route, item)}
+    >
+      <Icon name={item.iconName} type='material' size={80} />
+      <Text style={itemText}>{item.name}</Text>
+    </TouchableOpacity>
+  )
+}
+
+const numColumns = 2;
+const WIDTH = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  itemStyle: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: 10
+    // backgroundColor: '#3232ff',
+    height: WIDTH / numColumns,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 1
   },
-  menuBtnWrapper: {
-    flexBasis: '40%',
-    margin: 15
-  },
-  menuBtnImg: {
-    alignSelf: 'center'
-  },
-  menuBtnText: {
-    textAlign: 'center',
+  itemText: {
+    // color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold'
+  },
+  itemInvisible: {
+    backgroundColor: 'transparent'
   }
-
 })
