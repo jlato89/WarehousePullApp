@@ -7,7 +7,7 @@ const { Op } = require('sequelize');
 router.get('/api/fetchOrders', (req, res) => {
   models.orders
     .findAll({
-      attributes: ['quote', 'date', 'data'],
+      attributes: ['id', 'quote', 'date', 'data'],
       where: {
         pulled: 'no',
         date: {
