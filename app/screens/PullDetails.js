@@ -3,10 +3,13 @@ import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, Alert } from 'r
 import { Icon } from 'react-native-elements';
 
 const PullDetails = ({ navigation, route }) => {
-  const { quote, quoteIndex, customer, notes, data, handleToggle } = route.params;
+  const { quote, customer, notes, data } = route.params;
   const isFinished = data.every((item => item.picked !== false));
 
-  console.log('[PULLDETAILS] ', data);
+  const toggleItemHandler = ({ index }) => {
+    navigation.setParams(data[index].picked = !data[index].picked);
+    route.params.refreshHandler
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,13 +22,11 @@ const PullDetails = ({ navigation, route }) => {
           data={data.sort((a, b) => a.picked - b.picked)}
           renderItem={({ item, index }) =>
             <ListViewItem
-              quoteIndex={quoteIndex}
               data={item}
-              itemIndex={index}
-              toggleItem={handleToggle}
+              index={index}
+              toggleItem={toggleItemHandler}
             />}
           keyExtractor={(item, index) => index.toString()}
-          extraData={route.params}
         />
       </View>
       <View style={styles.comments}>
@@ -43,8 +44,8 @@ const PullDetails = ({ navigation, route }) => {
   );
 }
 
-function ListViewItem({ quoteIndex, data, itemIndex, toggleItem }) {
-  console.log('[PULLDETAILS] Func', data);
+function ListViewItem({ data, index, toggleItem }) {
+
   return (
     <View style={[styles.item, data.picked && styles.selectedItem]} >
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
@@ -55,11 +56,11 @@ function ListViewItem({ quoteIndex, data, itemIndex, toggleItem }) {
         <Icon
           name={data.picked ? 'check-square-o' : 'square-o'}
           type='font-awesome'
-          onPress={() => !data.picked ? toggleItem({ quoteIndex, itemIndex }) : Alert.alert(
+          onPress={() => !data.picked ? toggleItem({ index }) : Alert.alert(
             `Mark ${data.sku} as un-pulled`,
             'are you sure?',
             [
-              { text: 'YES', onPress: () => toggleItem({ quoteIndex, itemIndex }) },
+              { text: 'YES', onPress: () => toggleItem({ index }) },
               { text: 'NO', style: 'cancel' }
             ])
           }
