@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 const PullDetails = ({ navigation, route }) => {
-  const { quote, customer, notes, data, handleToggle } = route.params;
+  const { quote, quoteIndex, customer, notes, data, handleToggle } = route.params;
   const isFinished = data.every((item => item.picked !== false));
 
-
+  console.log('[PULLDETAILS] ', data);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -17,14 +17,15 @@ const PullDetails = ({ navigation, route }) => {
       <View style={styles.listItems}>
         <FlatList
           data={data.sort((a, b) => a.picked - b.picked)}
-          renderItem={({ item }) =>
+          renderItem={({ item, index }) =>
             <ListViewItem
-              quote={quote}
+              quoteIndex={quoteIndex}
               data={item}
+              itemIndex={index}
               toggleItem={handleToggle}
             />}
           keyExtractor={(item, index) => index.toString()}
-          extraData={data.picked}
+          extraData={route.params}
         />
       </View>
       <View style={styles.comments}>
@@ -42,7 +43,8 @@ const PullDetails = ({ navigation, route }) => {
   );
 }
 
-function ListViewItem({ quote, data, toggleItem }) {
+function ListViewItem({ quoteIndex, data, itemIndex, toggleItem }) {
+  console.log('[PULLDETAILS] Func', data);
   return (
     <View style={[styles.item, data.picked && styles.selectedItem]} >
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
@@ -53,11 +55,11 @@ function ListViewItem({ quote, data, toggleItem }) {
         <Icon
           name={data.picked ? 'check-square-o' : 'square-o'}
           type='font-awesome'
-          onPress={() => !data.picked ? toggleItem(quote, data.sku) : Alert.alert(
+          onPress={() => !data.picked ? toggleItem({ quoteIndex, itemIndex }) : Alert.alert(
             `Mark ${data.sku} as un-pulled`,
             'are you sure?',
             [
-              { text: 'YES', onPress: () => toggleItem(quote, data.sku) },
+              { text: 'YES', onPress: () => toggleItem({ quoteIndex, itemIndex }) },
               { text: 'NO', style: 'cancel' }
             ])
           }
