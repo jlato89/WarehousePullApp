@@ -8,7 +8,6 @@ const PullDetails = ({ navigation, route }) => {
 
   const toggleItemHandler = ({ index }) => {
     navigation.setParams(data[index].picked = !data[index].picked);
-    route.params.refreshHandler
   }
 
   return (
