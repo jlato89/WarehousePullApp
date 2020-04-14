@@ -1,43 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import moment from 'moment';
 import TESTDATA from '../../TestData/testData.json';
 
-const Orders = ({ navigation }) => {
-  const [orderList, setOrderList] = useState(TESTDATA);
-  const [isLoading, setIsLoading] = useState(false); //! TESTING, Change to true on prod
+export class Orders extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      orderList: [],
+      loading: false,
+      isRefreshing: false,
+      lastRefresh: '',
+      error: ''
+    }
+  }
 
-  // useEffect(() => {
-  //   if (!orderList) {
-  //     console.log('IF useEffect Triggered');
-  //     fetch('http://192.168.1.136:8080/api/fetchOrders')
-  //       .then(response => response.json())
-  //       .then(latestOrders => setOrderList(latestOrders))
-  //       .catch(err => console.log(err))
-  //       .finally(() => setIsLoading(false))
-  //   }
-  //   console.log('ELSE useEffect Triggered');
-  // });
-  console.log(orderList);
+  componentDidMount() {
+    if (this.state.orderList.length === 0) {
+      console.log('Fetch Triggered');
+      this.fetchOrders();
+    }
+  }
 
-  return (
-    <SafeAreaView style={styles.container}>
-      {isLoading ?
-        <ActivityIndicator size='large' />
-        :
-        <FlatList
-          data={orderList}
-          renderItem={({ item }) =>
-            <ListItem
-              item={item}
-              navigation={navigation}
-            />}
-          keyExtractor={item => item.id.toString()}
-          extraData={orderList}
-        />
-      }
-    </SafeAreaView>)
+  fetchOrders() {
+    this.setState({ loading: true });
+    let currentOrders = this.state.orderList;
+    let orderList = currentOrders.concat(TESTDATA); // concate/stack list with response
+    let lastRefresh = moment(new Date()).calendar();
+    this.setState({ loading: false, orderList, lastRefresh });
+  }
+
+  onRefresh() {
+    this.setState({ isRefreshing: true });
+    let orderList = TESTDATA;
+    let lastRefresh = moment(new Date()).calendar();
+    this.setState({ isRefreshing: false, orderList, lastRefresh });
+    console.log(lastRefresh);
+  }
+
+  render() {
+    const { loading, orderList } = this.state;
+    const { navigation } = this.props;
+    console.log(orderList);
+
+    return (
+      <SafeAreaView style={styles.container}>
+        {loading ?
+          <ActivityIndicator size='large' />
+          :
+          <FlatList
+            data={orderList}
+            renderItem={({ item }) =>
+              <ListItem
+                item={item}
+                navigation={navigation}
+              />}
+            keyExtractor={item => item.id.toString()}
+            extraData={this.state}
+            refreshing={this.state.isRefreshing}
+            onRefresh={this.onRefresh.bind(this)}
+          />
+        }
+        <View>
+          <Text>Last Updated: {this.state.lastRefresh || 'N/A'}</Text>
+        </View>
+      </SafeAreaView>)
+  }
 }
 
+//* Render Items
 function ListItem({ navigation, item }) {
   const { id, quote, date, data, customerInfo } = item;
   const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
@@ -53,17 +84,26 @@ function ListItem({ navigation, item }) {
       </View>
       <View style={styles.listContent}>
         <Text style={styles.listText} numberOfLines={1}>{customer}</Text>
-        <Text style={styles.listText}>{PullStatus(data) ? 'Not Started' : 'Started'}</Text>
+        <Text style={styles.listText}>{pullStatus(data) ? 'Not Started' : 'Started'}</Text>
       </View>
     </TouchableOpacity>
   )
 }
 
 
-function PullStatus(items) {
-  let status = items.every(el => el.picked !== true)
+function pullStatus(items) {
+  let status = items.every(item => item.picked !== true)
   return status
 }
+
+// function fetchOrders() {
+//   this.setState({ loading: true })
+//   fetch('http://192.168.1.136:8080/api/fetchOrders')
+//     .then(response => response.json())
+//     .then(latestOrders => setOrderList(latestOrders))
+//     .catch(err => console.log(err))
+//     .finally(() => setIsLoading(false))
+// }
 
 export default Orders
 
