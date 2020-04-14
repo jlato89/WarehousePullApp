@@ -1,7 +1,8 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import MainStack from './app/Stacks/MainStack'
+import MainStack from './app/Stacks/MainStack';
 
 
 const App = () => {
@@ -18,6 +19,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 20 // Statusbar Height
+    // marginTop: 20 // Statusbar Height
   }
 });
