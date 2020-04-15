@@ -45,12 +45,18 @@ router.get('/api/testData', (req, res) => {
       },
       include: {
         model: models.inventory_index,
-        as: 'locationIndex',
+        as: 'itemInfo',
         attributes: ['id'],
+        // limit: 1,
+        where: {
+          quantity: { [Op.gt]: 0 }
+        },
         include: {
           model: models.inventory_index_location,
           as: 'itemLocation',
-          attributes: ['isle', 'section', 'bay']
+          attributes: {
+            exclude: ['id']
+          }
         }
       }
     })
