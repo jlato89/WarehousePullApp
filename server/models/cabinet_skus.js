@@ -108,7 +108,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   cabinet_skus.associate = (models) => {
     cabinet_skus.hasMany(models.inventory_index,
-      { foreignKey: 'sku_id', as: 'locationIndex' }
+      { foreignKey: 'sku_id', as: 'itemInfo' }
     );
   }
   return cabinet_skus

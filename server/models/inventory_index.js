@@ -27,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'inventory_index'
   });
   inventory_index.associate = (models) => {
-    // inventory_index.hasOne(models.cabinet_skus);
     inventory_index.belongsTo(models.inventory_index_location,
       { foreignKey: 'location', as: 'itemLocation' }
     );

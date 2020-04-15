@@ -21,8 +21,5 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'inventory_index_location'
   });
-  inventory_index_location.associate = (models) => {
-    inventory_index_location.hasMany(models.inventory_index);
-  }
   return inventory_index_location
 };
