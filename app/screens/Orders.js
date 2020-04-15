@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
-import moment from 'moment';
 import TESTDATA from '../../TestData/testData.json';
 
 export class Orders extends Component {
@@ -10,7 +9,6 @@ export class Orders extends Component {
       orderList: [],
       loading: false,
       isRefreshing: false,
-      lastRefresh: '',
       error: ''
     }
   }
@@ -26,16 +24,13 @@ export class Orders extends Component {
     this.setState({ loading: true });
     let currentOrders = this.state.orderList;
     let orderList = currentOrders.concat(TESTDATA); // concate/stack list with response
-    let lastRefresh = moment(new Date()).calendar();
-    this.setState({ loading: false, orderList, lastRefresh });
+    this.setState({ loading: false, orderList });
   }
 
   onRefresh() {
     this.setState({ isRefreshing: true });
     let orderList = TESTDATA;
-    let lastRefresh = moment(new Date()).calendar();
-    this.setState({ isRefreshing: false, orderList, lastRefresh });
-    console.log(lastRefresh);
+    this.setState({ isRefreshing: false, orderList });
   }
 
   render() {
@@ -61,9 +56,6 @@ export class Orders extends Component {
             onRefresh={this.onRefresh.bind(this)}
           />
         }
-        <View>
-          <Text>Last Updated: {this.state.lastRefresh || 'N/A'}</Text>
-        </View>
       </SafeAreaView>)
   }
 }
