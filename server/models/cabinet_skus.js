@@ -107,7 +107,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'cabinet_skus'
   });
   cabinet_skus.associate = (models) => {
-    cabinet_skus.hasOne(models.inventory_index,
+    cabinet_skus.hasMany(models.inventory_index,
       { foreignKey: 'sku_id', as: 'locationIndex' }
     );
   }
