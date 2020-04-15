@@ -29,6 +29,40 @@ router.get('/api/fetchOrders', (req, res) => {
     })
 });
 
+router.get('/api/testData', (req, res) => {
+  const TESTDATA = require('../../TestData/testData.json');
+  let sku = [];
+  let dsCode = [];
+
+  models.cabinet_skus
+    .findAll({
+      attributes: ['id', 'global_sku_id', 'sku_type', 'sku', 'ds_code', 'type', 'box_type', 'box_sku'],
+      where: {
+        is_deleted: 0,
+        has_sub: 0,
+        sku: 'B18',
+        ds_code: 'DSW'
+      },
+      include: {
+        model: models.inventory_index,
+        as: 'locationIndex',
+        attributes: ['id'],
+        include: {
+          model: models.inventory_index_location,
+          as: 'itemLocation',
+          attributes: ['isle', 'section', 'bay']
+        }
+      }
+    })
+    .then(orders => {
+      res.json(orders)
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
+});
+
 
 // Order Data parser. Turns Json Data String into Data Obj
 const dataParse = (data) => {
