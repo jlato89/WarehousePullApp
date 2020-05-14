@@ -2,18 +2,18 @@ const menuItems = [
   {
     name: 'Current Orders',
     iconName: 'assignment',
-    route: 'OrderStack'
+    route: 'OrderStack',
   },
   {
     name: 'Scheduler',
     iconName: 'date-range',
-    route: 'SchedulerStack'
+    route: 'SchedulerStack',
   },
   {
     name: 'User Management',
     iconName: 'supervisor-account',
-    route: 'UserStack'
+    route: 'UserStack',
   },
-]
+];
 
-export default menuItems
+export default menuItems;

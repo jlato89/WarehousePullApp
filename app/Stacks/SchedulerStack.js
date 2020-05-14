@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderHomeIcon from '../components/HeaderHomeIcon';
 
 const Stack = createStackNavigator();
-const SchedulerStack = () =>
+const SchedulerStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: { backgroundColor: '#f4511e' },
@@ -12,13 +12,11 @@ const SchedulerStack = () =>
       headerTintColor: '#fff',
       headerTitleStyle: { fontWeight: 'bold' },
       headerRightContainerStyle: { paddingHorizontal: 10 },
-      headerRight: () => <HeaderHomeIcon />
+      headerRight: () => <HeaderHomeIcon />,
     }}
   >
-    <Stack.Screen
-      name='Scheduler'
-      component={Scheduler}
-    />
+    <Stack.Screen name='Scheduler' component={Scheduler} />
   </Stack.Navigator>
+);
 
-export default SchedulerStack
+export default SchedulerStack;

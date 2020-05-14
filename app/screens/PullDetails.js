@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View, Text, FlatList, Button, Alert } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  Button,
+  Alert,
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 
 const PullDetails = ({ navigation, route }) => {
   const { quote, customer, notes, data } = route.params;
-  const isFinished = data.every((item => item.picked !== false));
+  const isFinished = data.every(item => item.picked !== false);
 
   const toggleItemHandler = ({ index }) => {
-    navigation.setParams(data[index].picked = !data[index].picked);
-  }
+    navigation.setParams((data[index].picked = !data[index].picked));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,12 +27,13 @@ const PullDetails = ({ navigation, route }) => {
       <View style={styles.listItems}>
         <FlatList
           data={data.sort((a, b) => a.picked - b.picked)}
-          renderItem={({ item, index }) =>
+          renderItem={({ item, index }) => (
             <ListViewItem
               data={item}
               index={index}
               toggleItem={toggleItemHandler}
-            />}
+            />
+          )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
@@ -41,12 +50,11 @@ const PullDetails = ({ navigation, route }) => {
       />
     </SafeAreaView>
   );
-}
+};
 
 function ListViewItem({ data, index, toggleItem }) {
-
   return (
-    <View style={[styles.item, data.picked && styles.selectedItem]} >
+    <View style={[styles.item, data.picked && styles.selectedItem]}>
       <Text style={[styles.itemText, styles.qty]}>[ {data.qty} ]</Text>
       <Text style={[styles.itemText, styles.style]}>{data.style}</Text>
       <Text style={[styles.itemText, styles.sku]}>{data.sku}</Text>
@@ -55,26 +63,25 @@ function ListViewItem({ data, index, toggleItem }) {
         <Icon
           name={data.picked ? 'check-square-o' : 'square-o'}
           type='font-awesome'
-          onPress={() => !data.picked ? toggleItem({ index }) : Alert.alert(
-            `Mark ${data.sku} as un-pulled`,
-            'are you sure?',
-            [
-              { text: 'YES', onPress: () => toggleItem({ index }) },
-              { text: 'NO', style: 'cancel' }
-            ])
+          onPress={() =>
+            !data.picked
+              ? toggleItem({ index })
+              : Alert.alert(`Mark ${data.sku} as un-pulled`, 'are you sure?', [
+                  { text: 'YES', onPress: () => toggleItem({ index }) },
+                  { text: 'NO', style: 'cancel' },
+                ])
           }
         />
       </View>
     </View>
-  )
+  );
 }
 
-
-export default PullDetails
+export default PullDetails;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   header: {
     flex: 1,
@@ -98,31 +105,31 @@ const styles = StyleSheet.create({
     // marginHorizontal: 8
   },
   selectedItem: {
-    backgroundColor: '#a4a4a4'
+    backgroundColor: '#a4a4a4',
   },
   itemText: {
-    fontSize: 20
+    fontSize: 20,
   },
   qty: {
     flex: 1,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   style: {
     flex: 1,
-    textAlign: 'right'
+    textAlign: 'right',
   },
   sku: {
     flex: 3,
-    textAlign: 'right'
+    textAlign: 'right',
   },
   location: {
     flex: 2,
-    textAlign: 'right'
+    textAlign: 'right',
   },
   checkMark: {
     flex: 1,
     fontSize: 30,
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   comments: {
     flex: 1,
@@ -133,5 +140,5 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     flex: 1,
-  }
+  },
 });

@@ -6,9 +6,9 @@ const Scheduler = () => {
     <View>
       <Text>Scheduler Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Scheduler
+export default Scheduler;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -12,7 +12,7 @@ const HeaderHomeIcon = () => {
       size={36}
       onPress={() => navigation.navigate('Home')}
     />
-  )
-}
+  );
+};
 
-export default HeaderHomeIcon
+export default HeaderHomeIcon;

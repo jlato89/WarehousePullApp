@@ -6,9 +6,9 @@ const UserManagement = () => {
     <View>
       <Text>User Management Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default UserManagement
+export default UserManagement;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

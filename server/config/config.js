@@ -8,8 +8,8 @@ module.exports = {
     host: 'localhost',
     dialect: 'mysql',
     define: {
-      timestamps: false
-    }
+      timestamps: false,
+    },
   },
   development: {
     host: process.env.DB_HOSTNAME,
@@ -18,8 +18,8 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     dialect: 'mysql',
     define: {
-      timestamps: false
-    }
+      timestamps: false,
+    },
   },
   production: {
     host: process.env.DB_HOSTNAME,
@@ -29,7 +29,7 @@ module.exports = {
     dialect: 'mysql',
     use_env_variable: 'DATABASE_URL',
     define: {
-      timestamps: false
-    }
-  }
+      timestamps: false,
+    },
+  },
 };

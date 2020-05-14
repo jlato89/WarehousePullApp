@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderHomeIcon from '../components/HeaderHomeIcon';
 
 const Stack = createStackNavigator();
-const UserStack = () =>
+const UserStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: { backgroundColor: '#f4511e' },
@@ -12,7 +12,7 @@ const UserStack = () =>
       headerTintColor: '#fff',
       headerTitleStyle: { fontWeight: 'bold' },
       headerRightContainerStyle: { paddingHorizontal: 10 },
-      headerRight: () => <HeaderHomeIcon />
+      headerRight: () => <HeaderHomeIcon />,
     }}
   >
     <Stack.Screen
@@ -31,5 +31,6 @@ const UserStack = () =>
       options={{title: 'Modify User'}}
     /> */}
   </Stack.Navigator>
+);
 
-export default UserStack
+export default UserStack;

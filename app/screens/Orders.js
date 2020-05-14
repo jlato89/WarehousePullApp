@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, FlatList, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import TESTDATA from '../../TestData/testData.json';
 
 export class Orders extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       orderList: [],
       loading: false,
       isRefreshing: false,
-      error: ''
-    }
+      error: '',
+    };
   }
 
   componentDidMount() {
@@ -40,23 +48,22 @@ export class Orders extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        {loading ?
+        {loading ? (
           <ActivityIndicator size='large' />
-          :
+        ) : (
           <FlatList
             data={orderList}
-            renderItem={({ item }) =>
-              <ListItem
-                item={item}
-                navigation={navigation}
-              />}
+            renderItem={({ item }) => (
+              <ListItem item={item} navigation={navigation} />
+            )}
             keyExtractor={item => item.id.toString()}
             extraData={this.state}
             refreshing={this.state.isRefreshing}
             onRefresh={this.onRefresh.bind(this)}
           />
-        }
-      </SafeAreaView>)
+        )}
+      </SafeAreaView>
+    );
   }
 }
 
@@ -68,24 +75,29 @@ function ListItem({ navigation, item }) {
   return (
     <TouchableOpacity
       style={styles.listContainer}
-      onPress={() => navigation.navigate('PullDetails', { id, quote, customer, data })}
+      onPress={() =>
+        navigation.navigate('PullDetails', { id, quote, customer, data })
+      }
     >
       <View style={styles.listHeader}>
         <Text style={styles.listText}>{quote}</Text>
         <Text style={styles.listText}>{date}</Text>
       </View>
       <View style={styles.listContent}>
-        <Text style={styles.listText} numberOfLines={1}>{customer}</Text>
-        <Text style={styles.listText}>{pullStatus(data) ? 'Not Started' : 'Started'}</Text>
+        <Text style={styles.listText} numberOfLines={1}>
+          {customer}
+        </Text>
+        <Text style={styles.listText}>
+          {pullStatus(data) ? 'Not Started' : 'Started'}
+        </Text>
       </View>
     </TouchableOpacity>
-  )
+  );
 }
 
-
 function pullStatus(items) {
-  let status = items.every(item => item.picked !== true)
-  return status
+  let status = items.every(item => item.picked !== true);
+  return status;
 }
 
 // function fetchOrders() {
@@ -97,30 +109,29 @@ function pullStatus(items) {
 //     .finally(() => setIsLoading(false))
 // }
 
-export default Orders
+export default Orders;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 5
+    margin: 5,
   },
   listContainer: {
     borderWidth: 2,
-    marginVertical: 5
+    marginVertical: 5,
   },
   listHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   listContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 20
-
+    paddingHorizontal: 20,
   },
   listText: {
     marginHorizontal: 5,
     fontSize: 18,
-    maxWidth: '60%'
-  }
+    maxWidth: '60%',
+  },
 });

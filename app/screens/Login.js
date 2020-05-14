@@ -6,9 +6,9 @@ const Login = () => {
     <View>
       <Text>Login Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

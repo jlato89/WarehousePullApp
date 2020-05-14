@@ -1,5 +1,5 @@
 const models = require('../models');
-const moment = require('moment')
+const moment = require('moment');
 const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
@@ -11,22 +11,26 @@ router.get('/api/fetchOrders', (req, res) => {
       where: {
         pulled: 'no',
         date: {
-          [Op.gte]: moment().subtract(30, 'days').toDate()
-        }
+          [Op.gte]: moment()
+            .subtract(30, 'days')
+            .toDate(),
+        },
       },
-      include: [{
-        model: models.users,
-        as: 'customerInfo',
-        attributes: ['first_name', 'last_name']
-      }]
+      include: [
+        {
+          model: models.users,
+          as: 'customerInfo',
+          attributes: ['first_name', 'last_name'],
+        },
+      ],
     })
     .then(orders => {
-      res.json(dataParse(orders))
+      res.json(dataParse(orders));
     })
     .catch(err => {
       console.log(err);
-      res.sendStatus(500)
-    })
+      res.sendStatus(500);
+    });
 });
 
 router.get('/api/testData', (req, res) => {
@@ -36,12 +40,21 @@ router.get('/api/testData', (req, res) => {
 
   models.cabinet_skus
     .findAll({
-      attributes: ['id', 'global_sku_id', 'sku_type', 'sku', 'ds_code', 'type', 'box_type', 'box_sku'],
+      attributes: [
+        'id',
+        'global_sku_id',
+        'sku_type',
+        'sku',
+        'ds_code',
+        'type',
+        'box_type',
+        'box_sku',
+      ],
       where: {
         is_deleted: 0,
         has_sub: 0,
         sku: 'B18',
-        ds_code: 'DSW'
+        ds_code: 'DSW',
       },
       include: {
         model: models.inventory_index,
@@ -49,29 +62,28 @@ router.get('/api/testData', (req, res) => {
         attributes: ['id'],
         // limit: 1,
         where: {
-          quantity: { [Op.gt]: 0 }
+          quantity: { [Op.gt]: 0 },
         },
         include: {
           model: models.inventory_index_location,
           as: 'itemLocation',
           attributes: {
-            exclude: ['id']
-          }
-        }
-      }
+            exclude: ['id'],
+          },
+        },
+      },
     })
     .then(orders => {
-      res.json(orders)
+      res.json(orders);
     })
     .catch(err => {
       console.log(err);
-      res.sendStatus(500)
-    })
+      res.sendStatus(500);
+    });
 });
 
-
 // Order Data parser. Turns Json Data String into Data Obj
-const dataParse = (data) => {
+const dataParse = data => {
   data.forEach(el => {
     let dataStr = el.data;
     let dataArr = dataStr.split(/[,@]/);
@@ -81,13 +93,13 @@ const dataParse = (data) => {
         style: dataArr[i + 0],
         sku: dataArr[i + 1],
         qty: dataArr[i + 3],
-        picked: false
-      }
+        picked: false,
+      };
       newArr.push(obj);
     }
     el.data = newArr;
   });
-  return data
-}
+  return data;
+};
 
 module.exports = router;

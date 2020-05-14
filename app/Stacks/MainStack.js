@@ -4,7 +4,7 @@ import Home from '../screens/Home';
 import { OrdersStack, SchedulerStack, UserStack } from './Index';
 
 const Stack = createStackNavigator();
-const MainStack = () =>
+const MainStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: { backgroundColor: '#f4511e' },
@@ -14,27 +14,28 @@ const MainStack = () =>
     }}
   >
     <Stack.Screen
-      name="Home"
+      name='Home'
       component={Home}
       options={{
-        title: 'NobleCraft\'s Warehouse App'
+        title: "NobleCraft's Warehouse App",
       }}
     />
     <Stack.Screen
-      name="OrderStack"
+      name='OrderStack'
       component={OrdersStack}
       options={{ headerShown: false }}
     />
     <Stack.Screen
-      name="UserStack"
+      name='UserStack'
       component={UserStack}
       options={{ headerShown: false }}
     />
     <Stack.Screen
-      name="SchedulerStack"
+      name='SchedulerStack'
       component={SchedulerStack}
       options={{ headerShown: false }}
     />
   </Stack.Navigator>
+);
 
-export default MainStack
+export default MainStack;

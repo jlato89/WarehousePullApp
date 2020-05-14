@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderHomeIcon from '../components/HeaderHomeIcon';
 
 const Stack = createStackNavigator();
-const OrdersStack = () =>
+const OrdersStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: { backgroundColor: '#f4511e' },
@@ -12,7 +12,7 @@ const OrdersStack = () =>
       headerTintColor: '#fff',
       headerTitleStyle: { fontWeight: 'bold' },
       headerRightContainerStyle: { paddingHorizontal: 10 },
-      headerRight: () => <HeaderHomeIcon />
+      headerRight: () => <HeaderHomeIcon />,
     }}
   >
     <Stack.Screen
@@ -26,5 +26,6 @@ const OrdersStack = () =>
       options={{ title: 'Pull Sheet' }}
     />
   </Stack.Navigator>
+);
 
-export default OrdersStack
+export default OrdersStack;
