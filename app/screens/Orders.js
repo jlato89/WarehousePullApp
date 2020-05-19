@@ -9,6 +9,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import TESTDATA from '../../TestData/testData.json';
+import TestPendingOrders from '../../TestData/pendingOrders.example.json';
+import CurrentOrders from '../components/Orders/CurrentOrders';
+import PendingOrders from '../components/Orders/PendingOrders';
 
 export class Orders extends Component {
   constructor(props) {
@@ -35,79 +38,70 @@ export class Orders extends Component {
     this.setState({ loading: false, orderList });
   }
 
+  // fetchOrders() {
+  //   this.setState({ loading: true });
+  //   fetch('http://192.168.1.136:8080/api/fetchOrders')
+  //     .then(response => response.json())
+  //     .then(latestOrders => setOrderList(latestOrders))
+  //     .catch(err => console.log(err))
+  //     .finally(() => setIsLoading(false));
+  // }
+
   onRefresh() {
     this.setState({ isRefreshing: true });
     let orderList = TESTDATA;
     this.setState({ isRefreshing: false, orderList });
   }
 
+  pullStatus(items) {
+    let status = items.every(item => item.picked !== true);
+    return status;
+  }
+
   render() {
     const { loading, orderList } = this.state;
     const { navigation } = this.props;
-    console.log(orderList);
 
-    return (
+    return loading ? (
+      <ActivityIndicator size='large' />
+    ) : (
       <SafeAreaView style={styles.container}>
-        {loading ? (
-          <ActivityIndicator size='large' />
-        ) : (
+        <View style={styles.alignTop}>
           <FlatList
             data={orderList}
-            renderItem={({ item }) => (
-              <ListItem item={item} navigation={navigation} />
-            )}
             keyExtractor={item => item.id.toString()}
             extraData={this.state}
             refreshing={this.state.isRefreshing}
             onRefresh={this.onRefresh.bind(this)}
+            renderItem={({ item }) => (
+              <CurrentOrders
+                item={item}
+                navigation={navigation}
+                pullStatus={this.pullStatus}
+              />
+            )}
           />
-        )}
+        </View>
+        <View style={styles.alignBottom}>
+          <FlatList
+            data={TestPendingOrders}
+            keyExtractor={item => item.id.toString()}
+            extraData={this.state}
+            refreshing={this.state.isRefreshing}
+            onRefresh={this.onRefresh.bind(this)}
+            renderItem={({ item, index }) => (
+              <PendingOrders
+                item={item}
+                index={index}
+                navigation={navigation}
+              />
+            )}
+          />
+        </View>
       </SafeAreaView>
     );
   }
 }
-
-//* Render Items
-function ListItem({ navigation, item }) {
-  const { id, quote, date, data, customerInfo } = item;
-  const customer = customerInfo.first_name + ' ' + customerInfo.last_name;
-
-  return (
-    <TouchableOpacity
-      style={styles.listContainer}
-      onPress={() =>
-        navigation.navigate('PullDetails', { id, quote, customer, data })
-      }
-    >
-      <View style={styles.listHeader}>
-        <Text style={styles.listText}>{quote}</Text>
-        <Text style={styles.listText}>{date}</Text>
-      </View>
-      <View style={styles.listContent}>
-        <Text style={styles.listText} numberOfLines={1}>
-          {customer}
-        </Text>
-        <Text style={styles.listText}>
-          {pullStatus(data) ? 'Not Started' : 'Started'}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-}
-
-function pullStatus(items) {
-  let status = items.every(item => item.picked !== true);
-  return status;
-}
-
-// function fetchOrders() {
-//   this.setState({ loading: true })
-//   fetch('http://192.168.1.136:8080/api/fetchOrders')
-//     .then(response => response.json())
-//     .then(latestOrders => setOrderList(latestOrders))
-//     .catch(err => console.log(err))
-//     .finally(() => setIsLoading(false))
-// }
 
 export default Orders;
 
@@ -116,22 +110,11 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5,
   },
-  listContainer: {
-    borderWidth: 2,
-    marginVertical: 5,
+  alignTop: {
+    flex: 3,
   },
-  listHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  listContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-  },
-  listText: {
-    marginHorizontal: 5,
-    fontSize: 18,
-    maxWidth: '60%',
+  alignBottom: {
+    flex: 2,
+    alignContent: 'flex-end',
   },
 });
