@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
   },
   commentsText: {
     fontSize: 16,
+    color: 'red',
   },
 });
