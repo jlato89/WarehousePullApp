@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-export function ListViewItem({ data, index, toggleItem }) {
+const ListViewItem = ({ data, index, toggleItem }) => {
   return (
     <View style={[styles.wrapper, data.picked && styles.selectedItem]}>
       <Text style={[styles.itemText, styles.qty]}>{data.qty}</Text>
@@ -29,7 +29,7 @@ export function ListViewItem({ data, index, toggleItem }) {
       </View>
     </View>
   );
-}
+};
 
 export default ListViewItem;
 
