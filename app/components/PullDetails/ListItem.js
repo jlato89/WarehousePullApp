@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f9c2ff',
+    // backgroundColor: '#f9c2ff',
     padding: 10,
     marginVertical: 3,
     // marginHorizontal: 8
   },
   selectedItem: {
-    backgroundColor: '#a4a4a4',
+    // backgroundColor: '#a4a4a4',
   },
   itemText: {
     fontSize: 20,

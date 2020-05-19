@@ -20,6 +20,7 @@ const PullDetails = ({ navigation, route }) => {
       {/* MAIN */}
       <View style={styles.listItems}>
         <FlatList
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
           data={data.sort((a, b) => a.picked - b.picked)}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => (
@@ -51,6 +52,12 @@ const styles = StyleSheet.create({
   },
   listItems: {
     flex: 15,
+  },
+  separator: {
+    height: 1,
+    width: '80%',
+    marginLeft: '10%',
+    backgroundColor: 'black',
   },
   submitBtn: {
     flex: 1,
