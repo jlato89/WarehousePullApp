@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Paint",
+    "qty": 5
+  },
+  {
+    "id": 2,
+    "name": "Assemble",
+    "qty": 5
+  },
+  {
+    "id": 3,
+    "name": "Ship",
+    "qty": 5
+  },
+  {
+    "id": 4,
+    "name": "Pickup",
+    "qty": 5
+  },
+  {
+    "id": 5,
+    "name": "Delivery",
+    "qty": 5
+  }
+]
