@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const PullInfo = ({ quote, customer }) => {
+const PullInfo = ({ quote, customer, date }) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.topHeader}>
         <Text style={styles.headerText}>#{quote}</Text>
-        <Text style={styles.headerText}>Date and Time</Text>
+        <Text style={styles.headerText}>{date}</Text>
       </View>
       <View style={styles.bottomHeader}>
         <Text style={styles.custName}>{customer}</Text>

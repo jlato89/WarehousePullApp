@@ -6,7 +6,7 @@ import PullInfo from '../components/PullDetails/PullInfo';
 import PullComments from '../components/PullDetails/PullComments';
 
 const PullDetails = ({ navigation, route }) => {
-  const { quote, customer, notes, data } = route.params;
+  const { quote, customer, notes, data, date } = route.params;
   const isFinished = data.every(item => item.picked !== false);
 
   const toggleItemHandler = ({ index }) => {
@@ -16,7 +16,7 @@ const PullDetails = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* HEADER */}
-      <PullInfo quote={quote} customer={customer} />
+      <PullInfo quote={quote} customer={customer} date={date} />
       {/* MAIN */}
       <View style={styles.listItems}>
         <FlatList
